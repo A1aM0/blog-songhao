@@ -1,0 +1,24 @@
+{
+  "name": "blog-songhao",
+  "version": "1.0.0",
+  "dependencies": {
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.6"
+  },
+  "author": "Yang Songhao",
+  "description": "> My personal blog backend with Nodejs and blog webpage templates",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/A1aM0/blog-songhao.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/A1aM0/blog-songhao/issues"
+  },
+  "homepage": "https://github.com/A1aM0/blog-songhao#readme"
+}

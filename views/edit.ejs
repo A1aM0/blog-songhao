@@ -30,6 +30,10 @@
         <!--        <input type="button" name="blog[blogType]">-->
         <input class="ui green basic button" type="submit" value="Submit">
     </form>
+    <div class="ui divider"></div>
+    <form action="/notes-catalogue/<%= blog._id %>?_method=delete" method="post" class="ui form">
+        <button class="fluid ui red basic button">DELETE!!!</button>
+    </form>
 
 </div>
 

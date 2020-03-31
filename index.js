@@ -80,6 +80,16 @@ app.put('/notes-catalogue/:id', function (req, res) {
    });
 });
 
+app.delete('/notes-catalogue/:id', function (req, res) {
+    Blog.findByIdAndRemove(req.params.id, function (err, updateBlog) {
+        if (err) {
+            res.redirect('/notes-catalogue/');
+        } else {
+            res.redirect('/notes-catalogue/');
+        }
+    });
+});
+
 app.get('/new', function (req, res) {
     // console.log(new Date().toLocaleTimeString() + ': A GET request asked for "New" page');
     res.render('new');

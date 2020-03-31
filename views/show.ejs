@@ -1,0 +1,30 @@
+<%- include('partials/header') %>
+<div class="ui main text container">
+    <div class="ui breadcrumb">
+        <a class="section" href="http://127.0.0.1:3000/">HOME</a>
+        <i class="right chevron icon divider"></i>
+        <a class="section" href="http://127.0.0.1:3000/notes-catalogue/">Study Notes</a>
+        <i class="right chevron icon divider"></i>
+        <div class="active section"><%= blog.title %></div>
+    </div>
+    <div class="ui huge header">
+        <%= blog.title %>
+    </div>
+    <div class="ui meta left aligned grid" style="opacity: 0.7">
+        <div class="ui middle aligned one wide column centered grid">
+            <i class="fas fa-2x fa-angle-right"></i>
+        </div>
+        <div class="ui middle aligned fifteen wide column">
+            <%= blog.abstract %>
+        </div>
+    </div>
+    <div class="ui divider"></div>
+    <div class="content">
+        <%- blog.body %>
+    </div>
+    <br>
+    <div class="extra" style="text-align: right; opacity: 0.5">
+        created on <%= blog.created.toDateString() %>
+    </div>
+</div>
+<%- include('partials/footer') %>

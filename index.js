@@ -1,6 +1,7 @@
 // Main app
 var express = require('express');
 var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
 var app = express();
 var mongoose = require('mongoose');
 
@@ -9,6 +10,7 @@ mongoose.connect('mongodb://localhost:27017/blog-app', {useNewUrlParser: true, u
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(methodOverride('_method'));
 
 // mongo config
 var blogSchema = new mongoose.Schema({
@@ -44,6 +46,40 @@ app.get('/notes-catalogue', function (req, res) {
     });
 });
 
+app.get('/notes-catalogue/:id', function (req, res) {
+    Blog.findById(req.params.id, function (err, foundBlog) {
+        if (err) {
+            res.redirect('/notes-catalogue');
+        } else {
+            res.render('show', {
+                blog: foundBlog
+            });
+        }
+    });
+});
+
+app.get('/notes-catalogue/:id/edit', function (req, res) {
+    Blog.findById(req.params.id, function (err, foundBlog) {
+        if (err) {
+            res.redirect('/notes-catalogue/' + req.params.id)
+        } else {
+            res.render('edit', {
+                blog: foundBlog
+            });
+        }
+    });
+});
+
+app.put('/notes-catalogue/:id', function (req, res) {
+   Blog.findByIdAndUpdate(req.params.id, req.body.blog, function (err, updateBlog) {
+        if (err) {
+            res.redirect('/notes-catalogue');
+        } else {
+            res.redirect('/notes-catalogue/' + req.params.id);
+        }
+   });
+});
+
 app.get('/new', function (req, res) {
     // console.log(new Date().toLocaleTimeString() + ': A GET request asked for "New" page');
     res.render('new');
@@ -59,7 +95,6 @@ app.post('/new', function (req, res) {
             } else {
                 res.redirect('/gossip');
             }
-
         }
     });
 });

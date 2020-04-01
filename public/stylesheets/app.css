@@ -12,3 +12,6 @@ a {
     background-position: right;
 }
 
+hr {
+    opacity: 0.3;
+}

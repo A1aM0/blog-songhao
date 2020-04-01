@@ -5,7 +5,7 @@
     <div class="ui huge header">
         Edit <%= blog.title %>
     </div>
-    <form action="/notes-catalogue/<%= blog._id %>?_method=put" method="post" class="ui form">
+    <form action="/notes-catalogue/<%= blog._id %>?_method=put" method="post" class="ui form" id="blogForm">
         <div class="field">
             <label>Title</label>
             <input type="text" name="blog[title]" value="<%= blog.title %>">
@@ -16,15 +16,20 @@
         </div>
         <div class="field">
             <label>Blog Content</label>
-            <textarea rows="20" name="blog[body]"><%- blog.body %></textarea>
+            <textarea rows="20" name="blog[body]" id="newBlogBody"><%- blog.body %></textarea>
         </div>
 
         <div class="field">
-            <select class="ui dropdown" name="blog[blogType]">
+            <select class="ui dropdown" name="blog[blogType]" id="blogType">
                 <option value="">Type of Blog</option>
                 <option value="note">Note</option>
                 <option value="gossip">Gossip</option>
             </select>
+        </div>
+        <div class="ui negative message" id="typeErr" style="display: none">
+            <div class="header">
+                Select correct type of blog!
+            </div>
         </div>
 
         <!--        <input type="button" name="blog[blogType]">-->

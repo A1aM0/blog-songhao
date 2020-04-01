@@ -5,7 +5,7 @@
     <div class="ui huge header">
         NEW BLOG
     </div>
-    <form action="new" method="post" class="ui form">
+    <form action="new" method="post" class="ui form" id="blogForm">
         <div class="field">
             <label>Title</label>
             <input type="text" name="blog[title]" placeholder="Title">
@@ -16,15 +16,20 @@
         </div>
         <div class="field">
             <label>Blog Content</label>
-            <textarea rows="20" name="blog[body]" placeholder="Main text here!"></textarea>
+            <textarea rows="20" name="blog[body]" placeholder="Main text here!" id="newBlogBody"></textarea>
         </div>
 
         <div class="field">
-            <select class="ui dropdown" name="blog[blogType]">
+            <select class="ui dropdown" name="blog[blogType]" id="blogType">
                 <option value="">Type of Blog</option>
                 <option value="note">Note</option>
                 <option value="gossip">Gossip</option>
             </select>
+        </div>
+        <div class="ui negative message" id="typeErr" style="display: none">
+            <div class="header">
+                Select correct type of blog!
+            </div>
         </div>
 
 <!--        <input type="button" name="blog[blogType]">-->

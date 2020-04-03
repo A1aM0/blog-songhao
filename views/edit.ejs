@@ -1,5 +1,17 @@
 <%- include('partials/header') %>
 
+<div class="ui main text container">
+    <div class="ui breadcrumb">
+        <a class="section" href="/">HOME</a>
+        <i class="right chevron icon divider"></i>
+        <a class="section" href="" id="noteRoute"></a>
+        <i class="right chevron icon divider"></i>
+        <div class="active section"><a class="section" href="" id="noteRoute2"><%= blog.title %></a></div>
+        <i class="right chevron icon divider"></i>
+        <div class="active section">Edit</div>
+    </div>
+</div>
+
 <div class="ui main text container segment">
 
     <div class="ui huge header">
@@ -41,5 +53,19 @@
     </form>
 
 </div>
+<script>
+    var blogType = "<%= blog.blogType %>";
+    if (blogType == 'note') {
+        document.getElementById('noteRoute').setAttribute('href', '/notes-catalogue/');
+        document.getElementById('noteRoute').textContent = 'Study Notes';
+        document.getElementById('noteRoute2').setAttribute('href', '/notes-catalogue/<%= blog._id %>');
+    } else if (blogType == 'gossip') {
+        document.getElementById('noteRoute').setAttribute('href', '/gossip-catalogue/');
+        document.getElementById('noteRoute').textContent = 'Gossip';
+        document.getElementById('noteRoute2').setAttribute('href', '/gossip-catalogue/<%= blog._id %>');
+    } else {
+        document.getElementById('noteRoute').textContent = '??';
+    }
+</script>
 
 <%- include('partials/footer') %>

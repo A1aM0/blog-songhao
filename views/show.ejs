@@ -1,7 +1,7 @@
 <%- include('partials/header') %>
 <div class="ui main text container">
     <div class="ui breadcrumb">
-        <a class="section" href="http://127.0.0.1:3000/">HOME</a>
+        <a class="section" href="/">HOME</a>
         <i class="right chevron icon divider"></i>
         <a class="section" href="" id="noteRoute"></a>
         <i class="right chevron icon divider"></i>
@@ -37,10 +37,10 @@
 <script>
     var blogType = "<%= blog.blogType %>";
     if (blogType == 'note') {
-        document.getElementById('noteRoute').setAttribute('href', 'http://127.0.0.1:3000/notes-catalogue/');
+        document.getElementById('noteRoute').setAttribute('href', '/notes-catalogue/');
         document.getElementById('noteRoute').textContent = 'Study Notes';
     } else if (blogType == 'gossip') {
-        document.getElementById('noteRoute').setAttribute('href', 'http://127.0.0.1:3000/gossip-catalogue/');
+        document.getElementById('noteRoute').setAttribute('href', '/gossip-catalogue/');
         document.getElementById('noteRoute').textContent = 'Gossip';
     } else {
         document.getElementById('noteRoute').textContent = '??';

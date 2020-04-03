@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html><head>
+    <!-- Standard Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <!-- Site Properties -->
+    <title>Homepage - Yang Songhao</title>
+    <link href="/Semantic-UI-CSS-2.4.1/semantic.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/app.css">
+
+    <style type="text/css">
+        .hidden.menu {
+            display: none;
+        }
+
+        .masthead.segment {
+            min-height: 700px;
+            padding: 1em 0em;
+        }
+        .masthead .logo.item img {
+            margin-right: 1em;
+        }
+        .masthead .ui.menu .ui.button {
+            margin-left: 0.5em;
+        }
+        .masthead h1.ui.header {
+            margin-top: 3em;
+            margin-bottom: 0em;
+            font-size: 4em;
+            font-weight: normal;
+        }
+        .masthead h2 {
+            font-size: 1.7em;
+            font-weight: normal;
+        }
+
+        .ui.vertical.stripe {
+            padding: 8em 0em;
+        }
+        .ui.vertical.stripe h3 {
+            font-size: 2em;
+        }
+        .ui.vertical.stripe .button + h3,
+        .ui.vertical.stripe p + h3 {
+            margin-top: 3em;
+        }
+        .ui.vertical.stripe .floated.image {
+            clear: both;
+        }
+        .ui.vertical.stripe p {
+            font-size: 1.33em;
+        }
+        .ui.vertical.stripe .horizontal.divider {
+            margin: 3em 0em;
+        }
+
+        .quote.stripe.segment {
+            padding: 0em;
+        }
+        .quote.stripe.segment .grid .column {
+            padding-top: 5em;
+            padding-bottom: 5em;
+        }
+
+        .footer.segment {
+            padding: 5em 0em;
+        }
+
+        .secondary.pointing.menu .toc.item {
+            display: none;
+        }
+
+        @media only screen and (max-width: 700px) {
+            .ui.fixed.menu {
+                display: none !important;
+            }
+            .secondary.pointing.menu .item,
+            .secondary.pointing.menu .menu {
+                display: none;
+            }
+            .secondary.pointing.menu .toc.item {
+                display: block;
+            }
+            .masthead.segment {
+                min-height: 350px;
+            }
+            .masthead h1.ui.header {
+                font-size: 2em;
+                margin-top: 1.5em;
+            }
+            .masthead h2 {
+                margin-top: 0.5em;
+                font-size: 1.5em;
+            }
+        }
+    </style>
+
+    <script src="/jquery-3.4.1.min.js"></script>
+    <script src="/Semantic-UI-CSS-2.4.1/semantic.min.js"></script>
+    <script src="/scripts/app.js"></script>
+
+    <script>
+        $(document)
+            .ready(function() {
+
+                // fix menu when passed
+                $('.masthead')
+                    .visibility({
+                        once: false,
+                        onBottomPassed: function() {
+                            $('.fixed.menu').transition('fade in');
+                        },
+                        onBottomPassedReverse: function() {
+                            $('.fixed.menu').transition('fade out');
+                        }
+                    })
+                ;
+
+                // create sidebar and attach to menu open
+                $('.ui.sidebar')
+                    .sidebar('attach events', '.toc.item')
+                ;
+
+            })
+        ;
+    </script>
+</head>
+<body class="pushable">
+
+<!-- Following Menu -->
+<div class="ui large top fixed menu transition hidden">
+    <div class="ui container">
+        <a class="active item" href="/">Home</a>
+        <a class="item" href="/notes-catalogue/">STUDY NOTES</a>
+        <a class="item">GOSSIP</a>
+        <a class="item">ABOUT</a>
+        <div class="right menu">
+            <a class="item" href="/contact/">CONTACT ME</a>
+            <a href="#" class="item disabled"></a>
+        </div>
+    </div>
+</div>
+
+<!-- Sidebar Menu -->
+<div class="ui vertical inverted sidebar menu left">
+    <a class="active item" href="/">Home</a>
+    <a class="item" href="/notes-catalogue/">STUDY NOTES</a>
+    <a class="item">GOSSIP</a>
+    <a class="item">ABOUT</a>
+    <a class="item" href="/contact/">CONTACT ME</a>
+    <a href="#" class="item disabled"></a>
+</div>
+
+
+<!-- Page Contents -->
+<div class="pusher">
+    <div class="ui inverted vertical masthead center aligned segment">
+
+        <div class="ui container">
+            <div class="ui large secondary inverted pointing menu">
+                <a class="toc item">
+                    <i class="sidebar icon"></i>
+                </a>
+                <a class="active item" href="/">Home</a>
+                <a class="item" href="/notes-catalogue/">STUDY NOTES</a>
+                <a class="item">GOSSIP</a>
+                <a class="item">ABOUT</a>
+                <div class="right menu">
+                    <a class="item" href="/contact/">CONTACT ME</a>
+                    <a href="#" class="item disabled"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui text container">
+            <h1 class="ui inverted header">
+                WELCOME
+            </h1>
+            <h2>This is a blog website displaying my experience in study and life.</h2>
+            <div>
+                <a class="ui huge primary button" href="#">More About <i class="right arrow icon"></i></a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="ui vertical stripe segment" style="padding-bottom: 5%">
+        <div class="ui text container">
+            <h4 class="ui horizontal header divider">
+                Recently Released
+            </h4>
+
+
+            <% for (var i = blogs.length-1; i > blogs.length-6; --i) { %>
+                <div class="item">
+                    <h3 class="ui header">Title +++ <%= blogs[i].title %></h3>
+
+                    <p><%= blogs[i].abstract %></p>
+
+                    <div class="ui right floated tiny button disabled">
+                        Released on <%= blogs[i].created.toDateString() %>
+                    </div>
+                    <br>
+                    <br>
+                    <% if (i > blogs.length-5) { %>
+                        <hr>
+                    <% } %>
+                </div>
+
+            <% } %>
+
+        </div>
+    </div>
+
+
+    <div class="ui inverted vertical footer segment" style="padding: 3%; margin-top: 5%">
+        <div class="ui center aligned container">
+            Copyright &nbsp;
+            <i class="far fa-copyright"></i> &nbsp;
+            2020 &nbsp; <a href="https://github.com/A1aM0">这里不是杨木易</a>. &nbsp; All rights reserved.
+
+            <br>
+            <div class="ui horizontal inverted small divided link list">
+                <div class="item">Powered by</div>
+                <a class="item" href="https://semantic-ui.com/">Semantic UI</a>
+                <a class="item" href="https://cloud.tencent.com/">
+                    <i class="fas fa-cloud"></i>
+                    &nbsp; Tencent Cloud
+                </a>
+                <a class="item" href="https://github.com/">
+                    <i class="fab fa-github-square"></i>
+                    &nbsp; Github
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</body></html>

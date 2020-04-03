@@ -134,11 +134,11 @@
     <div class="ui container">
         <a class="active item" href="/">Home</a>
         <a class="item" href="/notes-catalogue/">STUDY NOTES</a>
-        <a class="item">GOSSIP</a>
+        <a class="item disabled">GOSSIP</a>
         <a class="item" href="/about/">ABOUT</a>
         <div class="right menu">
-            <a class="item" href="/contact/">CONTACT ME</a>
-            <a href="#" class="item disabled"></a>
+            <a class="item" href="">CONTACT ME</a>
+            <a href="" class="item disabled"></a>
         </div>
     </div>
 </div>
@@ -147,10 +147,10 @@
 <div class="ui vertical inverted sidebar menu left">
     <a class="active item" href="/">Home</a>
     <a class="item" href="/notes-catalogue/">STUDY NOTES</a>
-    <a class="item">GOSSIP</a>
+    <a class="item disabled">GOSSIP</a>
     <a class="item" href="/about/">ABOUT</a>
-    <a class="item" href="/contact/">CONTACT ME</a>
-    <a href="#" class="item disabled"></a>
+    <a class="item" href="">CONTACT ME</a>
+    <a href="" class="item disabled"></a>
 </div>
 
 
@@ -165,11 +165,11 @@
                 </a>
                 <a class="active item" href="/">Home</a>
                 <a class="item" href="/notes-catalogue/">STUDY NOTES</a>
-                <a class="item">GOSSIP</a>
+                <a class="item disabled">GOSSIP</a>
                 <a class="item" href="/about/">ABOUT</a>
                 <div class="right menu">
-                    <a class="item" href="/contact/">CONTACT ME</a>
-                    <a href="#" class="item disabled"></a>
+                    <a class="item" href="">CONTACT ME</a>
+                    <a href="" class="item disabled"></a>
                 </div>
             </div>
         </div>
@@ -180,7 +180,7 @@
             </h1>
             <h2>This is a blog website displaying my experience in study and life.</h2>
             <div>
-                <a class="ui huge primary button" href="#">More About <i class="right arrow icon"></i></a>
+                <a class="ui huge primary button" href="/about/">More About <i class="right arrow icon"></i></a>
             </div>
         </div>
 
@@ -195,7 +195,7 @@
 
             <% for (var i = blogs.length-1; i > blogs.length-2; --i) { %>
                 <div class="item">
-                    <h3 class="ui header">Title +++ <%= blogs[i].title %></h3>
+                    <h3 class="ui header"><%= blogs[i].title %></h3>
 
                     <p><%= blogs[i].abstract %></p>
 

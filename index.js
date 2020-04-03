@@ -28,8 +28,18 @@ var Blog = mongoose.model("Blog", blogSchema);
 
 app.get('/', function (req, res) {
     // console.log(new Date().toLocaleTimeString() + ': A GET request asked for "Index" page');
-    res.render('index');
-    // res.sendFile('views/pattern.html');
+    // res.render('home');
+    Blog.find({}, function (err, blogs) {
+        if (err) {
+            res.render('error', {
+                err: err
+            });
+        } else {
+            res.render('home', {
+                blogs: blogs
+            });
+        }
+    });
 });
 
 app.get('/notes-catalogue', function (req, res) {
@@ -109,6 +119,10 @@ app.post('/new', function (req, res) {
         }
     });
 });
+
+app.get('/about', function (req, res) {
+    res.render('about');
+})
 
 app.listen(3000, function () {
     console.log('Listening -- Sever has started at http://localhost:3000/');

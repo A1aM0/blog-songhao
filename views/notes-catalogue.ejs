@@ -16,16 +16,16 @@
             </div>
             <div class="content">
                 <a class="header" href="/notes-catalogue/<%= blog._id %>/">
-                    Title <%= blog.title %>
+                    <%= blog.title %>
                 </a>
                 <div class="meta">
                     <span class="cinema">
-                        Abstract <%= blog.abstract %>
+                        <%= blog.abstract %>
                     </span>
                 </div>
                 <div class="description">
                     <p>
-                        body substring <%- blog.body.substring(0, 50) %> ...
+                        <%- blog.body.substring(0, 50) %> ...
                     </p>
                 </div>
                 <div class="extra">
@@ -36,7 +36,7 @@
                         </a>
                     </div>
                     <div class="ui label">
-                        Created on <%= blog.created.toDateString() %>
+                        Released on <%= blog.created.toDateString() %>
                     </div>
                 </div>
             </div>

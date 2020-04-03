@@ -122,7 +122,11 @@ app.post('/new', function (req, res) {
 
 app.get('/about', function (req, res) {
     res.render('about');
-})
+});
+
+app.get('/*', function (req, res) {
+    res.send('Page you searched is not existed, please go back!');
+});
 
 app.listen(3000, function () {
     console.log('Listening -- Sever has started at http://localhost:3000/');

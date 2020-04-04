@@ -14,3 +14,7 @@ $('#blogForm').submit(function () {
         return false;
     }
 });
+
+setInterval(function () {
+    $('#localTime').html(new Date().toLocaleTimeString());
+}, 1000);

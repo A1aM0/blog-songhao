@@ -1,0 +1,53 @@
+<%- include('partials/header') %>
+
+<div class="ui main text container">
+    <div class="ui breadcrumb">
+        <a class="section" href="/">HOME</a>
+        <i class="right chevron icon divider"></i>
+        <div class="active section">Gossip</div>
+    </div>
+    <div class="ui divided items">
+
+        <% blogs.forEach(function (blog) { %>
+            <% if (blog.blogType == 'gossip') {%>
+
+                <div class="item">
+                    <div class="ui small image">
+                        <img src="https://zijieke.com/semantic-ui/images/wireframe/image.png">
+                    </div>
+                    <div class="content">
+                        <a class="header" href="/gossip/<%= blog._id %>/">
+                            <%= blog.title %>
+                        </a>
+                        <div class="meta">
+                        <span class="cinema">
+                            <%= blog.abstract %>
+                        </span>
+                        </div>
+                        <div class="description">
+                            <p>
+                                <%- blog.body.substring(0, 50) %> ...
+                            </p>
+                        </div>
+                        <div class="extra">
+                            <div class="ui right floated primary basic button">
+                                <a href="/notes-catalogue/<%= blog._id %>/">
+                                    More
+                                    <i class="right chevron icon"></i>
+                                </a>
+                            </div>
+                            <div class="ui label">
+                                Released on <%= blog.created.toDateString() %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <% } %>
+        <% }) %>
+
+    </div>
+
+</div>
+
+<%- include('partials/footer') %>

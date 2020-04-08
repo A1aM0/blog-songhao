@@ -57,6 +57,21 @@ app.get('/notes-catalogue', function (req, res) {
     });
 });
 
+app.get('/gossip', function (req, res) {
+    // console.log(new Date().toLocaleTimeString() + ': A GET request asked for "Gossips  Catalogue" page');
+    Blog.find({}, function (err, blogs) {
+        if (err) {
+            res.render('error', {
+                err: err
+            });
+        } else {
+            res.render('gossip', {
+                blogs: blogs
+            });
+        }
+    });
+});
+
 app.get('/notes-catalogue/:id', function (req, res) {
     Blog.findById(req.params.id, function (err, foundBlog) {
         if (err) {

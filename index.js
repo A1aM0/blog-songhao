@@ -142,7 +142,7 @@ app.get('/about', function (req, res) {
 app.get('/halo', function (req, res) {
     res.redirect('http://localhost:8090/');
     console.log('redirect to halo system.');
-}
+});
 
 app.get('/*', function (req, res) {
     res.send('Page you searched is not existed, please go back!');

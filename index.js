@@ -5,6 +5,9 @@ var methodOverride = require('method-override');
 var app = express();
 var mongoose = require('mongoose');
 var marked = require('marked');
+var multer = require('multer');
+var path = require('path');
+var fs = require('fs');
 
 // app config
 mongoose.connect('mongodb://localhost:27017/blog-app', {useNewUrlParser: true, useUnifiedTopology: true});
@@ -12,12 +15,15 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
+var upload = multer({dest: 'uploads/'});
+app.use(upload.any());
 
 // mongo config
 var blogSchema = new mongoose.Schema({
     title: String,
     blogType: String,
     abstract: String,
+    filePath: String,
     body: String,
     created: {
         type: Date,
@@ -116,32 +122,42 @@ app.delete('/notes-catalogue/:id', function (req, res) {
     });
 });
 
-app.get('/new', function (req, res) {
-    // console.log(new Date().toLocaleTimeString() + ': A GET request asked for "New" page');
-    res.render('new');
-});
-
-app.post('/new', function (req, res) {
-    Blog.create(req.body.blog, function (err, newBlog) {
-        if (err) {
-            res.render('new');
-        } else {
-            if (req.body.blog.blogType == 'note') {
-                res.redirect('/notes-catalogue');
-            } else {
-                res.redirect('/gossip');
-            }
-        }
-    });
-});
-
 app.get('/about', function (req, res) {
     res.render('about');
 });
 
-app.get('/halo', function (req, res) {
-    res.redirect('http://localhost:8090/');
-    console.log('redirect to halo system.');
+app.post('/upload', (req, res, next) => {
+    // console.log(req.body, req.files);
+    const newName = req.files[0].path.slice(0, 8) + req.files[0].originalname;
+    fs.rename(req.files[0].path, newName, (err) => {
+        if (err) {
+            res.send('upload failed, return and re-upload');
+        } else {
+            var html = fs.readFileSync(newName);
+            html = marked(html.toString());
+            var newBlog = new Blog({
+                title: req.body.blog.title,
+                abstract: req.body.blog.abstract,
+                filePath: newName,
+                blogType: req.body.blog.blogType,
+                body: html
+            });
+            newBlog.save(function(err,ret){
+                if(err){
+                    alert('保存失败');
+                }
+                if (req.body.blog.blogType == 'note') {
+                    res.redirect('/notes-catalogue');
+                } else {
+                    res.redirect('/gossip');
+                }
+            });
+        }
+    });
+});
+
+app.get('/upload', (req, res) => {
+    res.render('upload');
 });
 
 app.get('/*', function (req, res) {

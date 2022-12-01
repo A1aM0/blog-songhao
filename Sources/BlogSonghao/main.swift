@@ -14,12 +14,17 @@ struct BlogSonghao: Website {
     }
 
     // Update these properties to configure your website:
-    var url = URL(string: "https://your-website-url.com")!
-    var name = "A1aM0 ❤️ Rancy"
+    var url = URL(string: "https://a1am0.github.io/")!
+    var name = "A1aM0"
     var description = "A description of BlogSonghao"
-    var language: Language { .english }
+    var language: Language { .chinese }
     var imagePath: Path? { nil }
 }
 
 // This will generate your website using the built-in Foundation theme:
+// try BlogSonghao().publish(
+//     using: [
+//         .unwrap(.gitHub("A1aM0/a1am0.github.io", branch: "main", useSSH: true), PublishingStep.deploy)
+//     ]
+// )
 try BlogSonghao().publish(withTheme: .foundation)
